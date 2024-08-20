@@ -15,8 +15,8 @@ GameInfo
 	FullscreenAutoAspect = 3
 	DimColor = "0b 0b 0b"
 	DimAmount = 0.8
-	PlayerClasses = "MyStandaloneGamePlayer"
-	StatusbarClass = "MyStandaloneGameHUD"
+	PlayerClasses = "OnatGamePlayer"
+	StatusbarClass = "OnatGameHUD"
 }
 
 //-------------------------------------------------------------------------------------------

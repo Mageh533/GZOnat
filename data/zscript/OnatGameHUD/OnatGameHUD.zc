@@ -1,7 +1,7 @@
-class MyStandaloneGameHUD : BaseStatusBar
+class OnatGameHUD : BaseStatusBar
 {
 	HUDFont mHUDFont;
-	MyStandaloneGamePlayer pmo;
+	OnatGamePlayer pmo;
 
 	override void Init(void)
 	{
@@ -15,7 +15,7 @@ class MyStandaloneGameHUD : BaseStatusBar
 	{
 		if (CPlayer && CPlayer.mo)
 		{
-			pmo = MyStandaloneGamePlayer(CPlayer.mo);
+			pmo = OnatGamePlayer(CPlayer.mo);
 		}
 
 		BaseStatusBar.Draw(state, TicFrac);
