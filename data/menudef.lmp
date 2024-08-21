@@ -72,3 +72,15 @@ ListMenu "SaveGameMenu"
 	Class "SaveMenu"
 	//Size Clean
 }
+
+//-------------------------------------------------------------------------------------------
+//
+//
+//
+//-------------------------------------------------------------------------------------------
+
+AddOptionMenu "ActionControlsMenu"
+{
+	StaticText ""
+	Control "$TXT_OPTIONS_FLASHLIGHT", "netevent flashlight_toggle"
+}

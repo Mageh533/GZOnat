@@ -1,4 +1,5 @@
 version "4.12.2"
 
-#include "zscript/OnatGamePlayer/OnatGamePlayer.zc"
-#include "zscript/OnatGameHUD/OnatGameHUD.zc"
+#include "zscript/player/OnatGamePlayer.zc"
+#include "zscript/hud/OnatGameHUD.zc"
+#include "zscript/weapons/Flashlight.zc"

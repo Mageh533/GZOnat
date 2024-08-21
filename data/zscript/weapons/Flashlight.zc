@@ -1,0 +1,87 @@
+class Flashlight : Inventory {
+
+    Spotlight beam;
+
+    const maxBattery = 100;
+
+    double battery;
+
+    Default{
+        Inventory.MaxAmount 1;
+        Inventory.Amount 1;
+        Inventory.PickupMessage "You got a flashlight";
+        Inventory.PickupSound "weapon/flashlight/up";
+        Scale 0.1;
+    }
+
+    States{
+    Spawn:
+        FLAS A -1;
+        Loop;
+    }
+
+    // Once the player picks up the flashlight
+    override void AttachToOwner(Actor other){
+        Super.AttachToOwner(other);
+
+        battery = maxBattery;
+
+        CreateBeam();
+    }
+
+    override void DoEffect(){
+        Super.DoEffect();
+
+        Console.Printf("Battery: %.2f", battery);
+
+        if(battery > 0 && beam){
+            battery -= 0.1;
+        } else if(beam && battery <= 0){
+            beam.Destroy();
+            beam = null;
+        }
+
+        if(beam){
+            beam.SetOrigin((owner.pos.xy, owner.player.viewz - 10), true);
+            beam.A_SetAngle(owner.angle, SPF_INTERPOLATE);
+            beam.A_SetPitch(owner.pitch, SPF_INTERPOLATE);
+        }
+    }
+
+    void Toggle(){
+        if(battery > 0){
+            if(beam){
+                beam.Destroy();
+                beam = null;
+            }else{
+                CreateBeam();
+            }
+            owner.A_StartSound("weapon/flashlight/up", CHAN_WEAPON, 1, ATTN_NORM);
+        }
+    }
+
+    private void CreateBeam(){
+        beam = Spotlight(Spawn('Spotlight', (pos.xy, owner.player.viewz - 10)));
+        beam.args[0] = 255; //red color in 0-255 range
+        beam.args[1] = 255; //green color in 0-255 range
+        beam.args[2] = 255; //blue color in 0-255 range
+        beam.args[3] = 320; //length of the spotllight
+        beam.SpotInnerAngle = 10; //inner angle (brightest area)
+        beam.SpotOuterAngle = 30; //outerangle (dimmer area)
+        beam.bATTENUATE = true; //make it attenuated (skip this if you want a brighter light, but it won't interact with material shaders)
+    }
+}
+
+
+// Event handler for my custom flashlight keybind, assigned in KEYCONF and menudef.lmp
+class FlashLightHandler : EventHandler{
+
+    override void NetworkProcess(ConsoleEvent e){
+        if(e.name == "flashlight_toggle"){
+            Flashlight flashlight = Flashlight(players[e.player].mo.FindInventory("Flashlight"));
+            if(flashlight){
+                flashlight.toggle();
+            }
+        }
+    }
+}

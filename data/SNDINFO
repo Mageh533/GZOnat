@@ -1,3 +1,5 @@
 player/usefail USEFAIL
 
+weapon/flashlight/up FLASHUP
+
 $playeralias onat male *usefail player/usefail

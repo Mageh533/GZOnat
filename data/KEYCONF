@@ -1,0 +1,3 @@
+addmenukey "$TXT_OPTIONS_FLASHLIGHT" FPP_Toggle
+alias FPP_Toggle "netevent flashlight_toggle"
+defaultbind f FPP_Toggle

@@ -17,6 +17,7 @@ GameInfo
 	DimAmount = 0.8
 	PlayerClasses = "OnatGamePlayer"
 	StatusbarClass = "OnatGameHUD"
+	AddEventHandlers = "FlashLightHandler"
 }
 
 //-------------------------------------------------------------------------------------------
