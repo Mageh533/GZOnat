@@ -48,5 +48,7 @@ class OnatGameHUD : BaseStatusBar
 
 
 		DrawBar(fg_bar, bg_bar, pmo.Stamina, pmo.MaxStamina, (0, -10), 0, 0, DI_SCREEN_CENTER_BOTTOM, staminaAlpha);
+
+		DrawString(mHUDFont, StringTable.Localize("$TXT_HUD_NOISE") .. FormatNumber(pmo.Noise, 3), (30, -20));
 	}
 }

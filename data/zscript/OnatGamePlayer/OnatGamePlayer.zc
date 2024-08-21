@@ -1,9 +1,13 @@
 class OnatGamePlayer : PlayerPawn
 {
 
+	// Constants
 	const maxStamina = 100;
 	const initForwardMove2 = 0.5;
 	const initSideMove2 = 0.5;
+
+	// Variables
+	double Noise;
 
 	Default
 	{
@@ -80,20 +84,23 @@ class OnatGamePlayer : PlayerPawn
 		Stop;
 	}
 
+	// Override functions
 	
 	override void PlayRunning(){
 		super.PlayRunning();
 		StaminaRun();
+		MakeNoise();
 	}
 
 	override void PlayerThink(){
 		super.PlayerThink();
 		StaminaRegen();
+		NoiseDecay();
 	}
 
 	// Stamina system
 	private void StaminaRun(){
-		if ((Player != null && (Player.cmd.buttons & BT_RUN)) && Stamina > 0){ // Check if the player is pressing the run button
+		if (isPlayerSprinting() && Stamina > 0){ // Check if the player is pressing the run button
 			Stamina -= 0.1;
 		}
 
@@ -107,8 +114,33 @@ class OnatGamePlayer : PlayerPawn
 	}
 
 	private void StaminaRegen(){
-		if (Stamina < maxStamina && !(Player != null && (Player.cmd.buttons & BT_RUN))){
+		if (Stamina < maxStamina && !isPlayerSprinting()){
 			Stamina++;
 		}
+	}
+
+	// Noise system
+	private void MakeNoise(){
+		if (Noise < 20) { // Noise cap when running
+			if (isPlayerSprinting()){
+				Noise += 0.5;
+			} else if (Player.ViewHeight != 20.5){
+				Noise += 0.05;
+			}
+		}
+	}
+
+	private void NoiseDecay(){
+		if (Noise > 0){
+			Noise -= 0.1;
+
+			if (Player.ViewHeight == 20.5){ // ViewHeight is 20.5 when crouching
+				Noise -= 0.5;
+			}
+		}
+	}
+
+	private bool isPlayerSprinting(){
+		return (Player != null && (Player.cmd.buttons & BT_RUN));
 	}
 }
