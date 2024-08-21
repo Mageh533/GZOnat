@@ -3,6 +3,8 @@ class OnatGameHUD : BaseStatusBar
 	HUDFont mHUDFont;
 	OnatGamePlayer pmo;
 
+	double staminaAlpha;
+
 	override void Init(void)
 	{
 		Super.Init();
@@ -24,12 +26,27 @@ class OnatGameHUD : BaseStatusBar
 		{
 			BeginHUD(forcescaled: true);
 
-			DrawHealth();
+			DrawStamina();
 		}
 	}
 
-	void DrawHealth(void)
+	void DrawStamina(void)
 	{
-		DrawString(mHUDFont, StringTable.Localize("$TXT_HUD_HEALTH") .. FormatNumber(pmo.Stamina, 3), (44, -20));
+
+		string fg_bar = "graphics/hud/stamina_bar_fg.png";
+		string bg_bar = "graphics/hud/stamina_bar_bg.png";
+
+		// Fade in/out the stamina bar effect
+		if (pmo.Stamina < pmo.MaxStamina && staminaAlpha < 1)
+		{
+			staminaAlpha += 0.01;
+		}
+		else if (pmo.Stamina >= pmo.MaxStamina && staminaAlpha > 0)
+		{
+			staminaAlpha -= 0.01;
+		}
+
+
+		DrawBar(fg_bar, bg_bar, pmo.Stamina, pmo.MaxStamina, (0, -10), 0, 0, DI_SCREEN_CENTER_BOTTOM, staminaAlpha);
 	}
 }

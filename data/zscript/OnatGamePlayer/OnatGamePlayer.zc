@@ -98,7 +98,7 @@ class OnatGamePlayer : PlayerPawn
 		}
 
 		if (Stamina <= 0){
-			ForwardMove2 = ForwardMove1 / 2;
+			ForwardMove2 = ForwardMove1 / 2; // Set sprint speed to walk speed (sprint speed is always twice of its value)
 			SideMove2 = SideMove1 / 2;
 		} else {
 			ForwardMove2 = initForwardMove2;
