@@ -1,9 +1,15 @@
 class OnatGamePlayer : PlayerPawn
 {
+
+	const maxStamina = 100;
+	const initForwardMove2 = 0.5;
+	const initSideMove2 = 0.5;
+
 	Default
 	{
 		Speed 1;
 		Health 100;
+		Stamina 100;
 		Radius 16;
 		Height 56;
 		Mass 100;
@@ -17,7 +23,7 @@ class OnatGamePlayer : PlayerPawn
 		Player.ForwardMove 0.5;
 		Player.SideMove 0.5;
 		Player.JumpZ 0;
-		Player.ViewBob 0.3;
+		Player.ViewBob 0.1;
 		Player.SoundClass "onat";
 	}
 
@@ -72,5 +78,37 @@ class OnatGamePlayer : PlayerPawn
 		PLAY AAAAAA 5;
 		PLAY A -1;
 		Stop;
+	}
+
+	
+	override void PlayRunning(){
+		super.PlayRunning();
+		StaminaRun();
+	}
+
+	override void PlayerThink(){
+		super.PlayerThink();
+		StaminaRegen();
+	}
+
+	// Stamina system
+	private void StaminaRun(){
+		if ((Player != null && (Player.cmd.buttons & BT_RUN)) && Stamina > 0){ // Check if the player is pressing the run button
+			Stamina -= 0.1;
+		}
+
+		if (Stamina <= 0){
+			ForwardMove2 = ForwardMove1 / 2;
+			SideMove2 = SideMove1 / 2;
+		} else {
+			ForwardMove2 = initForwardMove2;
+			SideMove2 = initSideMove2;
+		}
+	}
+
+	private void StaminaRegen(){
+		if (Stamina < maxStamina && !(Player != null && (Player.cmd.buttons & BT_RUN))){
+			Stamina++;
+		}
 	}
 }

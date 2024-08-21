@@ -30,6 +30,6 @@ class OnatGameHUD : BaseStatusBar
 
 	void DrawHealth(void)
 	{
-		DrawString(mHUDFont, StringTable.Localize("$TXT_HUD_HEALTH") .. FormatNumber(pmo.player.health, 3), (44, -20));
+		DrawString(mHUDFont, StringTable.Localize("$TXT_HUD_HEALTH") .. FormatNumber(pmo.Stamina, 3), (44, -20));
 	}
 }
