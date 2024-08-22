@@ -1,6 +1,7 @@
 class Flashlight : Inventory {
 
     Spotlight beam;
+    OnatGamePlayer pmo;
 
     const maxBattery = 100;
 
@@ -24,6 +25,8 @@ class Flashlight : Inventory {
     override void AttachToOwner(Actor other){
         Super.AttachToOwner(other);
 
+        pmo = OnatGamePlayer(other);
+
         battery = maxBattery;
 
         CreateBeam();
@@ -32,19 +35,38 @@ class Flashlight : Inventory {
     override void DoEffect(){
         Super.DoEffect();
 
+        if(beam){
+            beam.SetOrigin((pmo.pos.xy, pmo.player.viewz - 10), true);
+            beam.A_SetAngle(pmo.angle, SPF_INTERPOLATE);
+            beam.A_SetPitch(pmo.pitch, SPF_INTERPOLATE);
+        }
+
         Console.Printf("Battery: %.2f", battery);
+
+        // Reload the battery by using the handcrank
+        if(pmo.player.cmd.buttons & BT_RELOAD){
+            
+            if(battery < maxBattery){
+                battery += 0.5;
+            }
+
+            if(!pmo.IsActorPlayingSound(CHAN_WEAPON)){
+                pmo.A_StartSound("weapon/flashlight/reload", CHAN_WEAPON, 1, ATTN_NORM);
+            }
+
+            if(pmo.Noise < 10){
+                pmo.Noise += 0.2; // Player can keep reloading after reaching 100% but it simply makes noise
+            }
+            
+        } else {
+            pmo.A_StopSound(CHAN_WEAPON);
+        }
 
         if(battery > 0 && beam){
             battery -= 0.1;
         } else if(beam && battery <= 0){
             beam.Destroy();
             beam = null;
-        }
-
-        if(beam){
-            beam.SetOrigin((owner.pos.xy, owner.player.viewz - 10), true);
-            beam.A_SetAngle(owner.angle, SPF_INTERPOLATE);
-            beam.A_SetPitch(owner.pitch, SPF_INTERPOLATE);
         }
     }
 
@@ -56,19 +78,19 @@ class Flashlight : Inventory {
             }else{
                 CreateBeam();
             }
-            owner.A_StartSound("weapon/flashlight/up", CHAN_WEAPON, 1, ATTN_NORM);
+            pmo.A_StartSound("weapon/flashlight/up", CHAN_BODY, 1, ATTN_NORM);
         }
     }
 
     private void CreateBeam(){
-        beam = Spotlight(Spawn('Spotlight', (pos.xy, owner.player.viewz - 10)));
+        beam = Spotlight(Spawn('Spotlight', (pos.xy, pmo.player.viewz - 10)));
         beam.args[0] = 255; //red color in 0-255 range
         beam.args[1] = 255; //green color in 0-255 range
         beam.args[2] = 255; //blue color in 0-255 range
         beam.args[3] = 320; //length of the spotllight
         beam.SpotInnerAngle = 10; //inner angle (brightest area)
         beam.SpotOuterAngle = 30; //outerangle (dimmer area)
-        beam.bATTENUATE = true; //make it attenuated (skip this if you want a brighter light, but it won't interact with material shaders)
+        beam.bATTENUATE = true; //make it attenuated to interact with shaders
     }
 }
 

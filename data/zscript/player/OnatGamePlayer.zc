@@ -133,10 +133,6 @@ class OnatGamePlayer : PlayerPawn
 	private void NoiseDecay(){
 		if (Noise > 0){
 			Noise -= 0.1;
-
-			if (Player.ViewHeight == 20.5){ // ViewHeight is 20.5 when crouching
-				Noise -= 0.5;
-			}
 		}
 	}
 
