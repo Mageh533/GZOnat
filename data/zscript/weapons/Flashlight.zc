@@ -30,6 +30,8 @@ class Flashlight : Inventory {
         battery = maxBattery;
 
         CreateBeam();
+
+        pmo.A_Print("$TXT_HINT_FLASHLIGHT", 10);
     }
 
     override void DoEffect(){
@@ -39,13 +41,16 @@ class Flashlight : Inventory {
             beam.SetOrigin((pmo.pos.xy, pmo.player.viewz - 10), true);
             beam.A_SetAngle(pmo.angle, SPF_INTERPOLATE);
             beam.A_SetPitch(pmo.pitch, SPF_INTERPOLATE);
-        }
 
-        Console.Printf("Battery: %.2f", battery);
+            // Brightness decreases as battery decreases
+            beam.args[0] = 255 * (battery / maxBattery);
+            beam.args[1] = 255 * (battery / maxBattery);
+            beam.args[2] = 255 * (battery / maxBattery);
+        }
 
         // Reload the battery by using the handcrank
         if(pmo.player.cmd.buttons & BT_RELOAD){
-            
+
             if(battery < maxBattery){
                 battery += 0.5;
             }
@@ -66,6 +71,7 @@ class Flashlight : Inventory {
             battery -= 0.1;
         } else if(beam && battery <= 0){
             beam.Destroy();
+            pmo.A_StartSound("weapon/flashlight/up", CHAN_BODY, 1, ATTN_NORM);
             beam = null;
         }
     }
