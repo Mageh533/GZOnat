@@ -6,4 +6,8 @@ weapon/flashlight/reload FLASHRE
 
 ambience/scary SCARY
 
+objects/door/locked DOORL
+
+objects/door/open DOORO
+
 $playeralias onat male *usefail player/usefail
