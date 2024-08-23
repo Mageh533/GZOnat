@@ -4,4 +4,6 @@ weapon/flashlight/up FLASHUP
 
 weapon/flashlight/reload FLASHRE
 
+ambience/scary SCARY
+
 $playeralias onat male *usefail player/usefail

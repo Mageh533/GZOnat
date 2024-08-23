@@ -1,0 +1,41 @@
+class Triangulin : Actor {
+
+    const timeToAttack = 175; // 5 seconds in tics
+
+    double timeLeftToAttack;
+
+    Default {
+        Monster;
+        Health 100;
+        Radius 20;
+        Height 20;
+        Speed 20;
+    }
+    States {
+    Spawn:
+		TRIN A 10 A_Look;
+		Loop;
+	See:
+		TRIN A 1 Fast A_Chase;
+		Loop;
+	Melee:
+		TRIN A 0 Fast A_FaceTarget;
+		TRIN A 0 Fast A_SargAttack;
+		Goto See;
+    }
+
+    override void BeginPlay(){
+        Super.BeginPlay();
+        timeLeftToAttack = timeToAttack;
+        Deactivate(self);
+    }
+
+    override void Tick(){
+        Super.Tick();
+        if(timeLeftToAttack > 0){
+            timeLeftToAttack -= 1;
+        } else {
+            Activate(self);
+        }
+    }
+}

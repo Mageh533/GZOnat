@@ -10,7 +10,7 @@ class Flashlight : Inventory {
     Default{
         Inventory.MaxAmount 1;
         Inventory.Amount 1;
-        Inventory.PickupMessage "You got a flashlight";
+        Inventory.PickupMessage "$TXT_PICKUP_FLASHLIGHT";
         Inventory.PickupSound "weapon/flashlight/up";
         Scale 0.1;
     }

@@ -100,5 +100,6 @@ Map "MAP01" "$TXT_MAP01"
 DoomEdNums
 {
 10002=Flashlight
+10003=Triangulin
 }
 

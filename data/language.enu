@@ -13,5 +13,5 @@ TXT_MAP01 = "My Test Level";
 TXT_HUD_NOISE = "Noise: ";
 
 TXT_OPTIONS_FLASHLIGHT = "Flashlight Toggle";
-
-TXT_HINT_FLASHLIGHT = "Press the flashlight key to toggle the flashlight on and off. \n\n Press the reload key to recharge the battery. Careful, it makes noise!";
+TXT_PICKUP_FLASHLIGHT = "You got a flashlight";
+TXT_HINT_FLASHLIGHT = "     Press the flashlight key to toggle the flashlight on and off.\n\nPress the reload key to recharge the battery. Careful, it makes noise!";
