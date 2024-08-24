@@ -1,0 +1,14 @@
+class InvisibleItem : Inventory {
+    Default{
+        Inventory.MaxAmount 1;
+        Inventory.Amount 1;
+        Inventory.PickupMessage "";
+        Scale 0.1;
+    }
+
+    States{
+        Spawn:
+            INVS A -1;
+            Loop;
+    }
+}

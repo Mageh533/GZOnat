@@ -1,0 +1,15 @@
+class DoorKey : Inventory {
+    Default{
+        Inventory.MaxAmount 1;
+        Inventory.Amount 1;
+        Inventory.PickupMessage "$TXT_PICKUP_DOORKEY";
+        Inventory.PickupSound "objects/key/up";
+        Scale 0.1;
+    }
+
+    States{
+        Spawn:
+            DKEY A -1;
+            Loop;
+    }
+}

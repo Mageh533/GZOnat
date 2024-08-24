@@ -10,4 +10,6 @@ objects/door/locked DOORL
 
 objects/door/open DOORO
 
+objects/key/up DKEYUP
+
 $playeralias onat male *usefail player/usefail
