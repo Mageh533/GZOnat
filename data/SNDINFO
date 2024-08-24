@@ -6,6 +6,12 @@ weapon/flashlight/up FLASHUP
 
 weapon/flashlight/reload FLASHRE
 
+weapon/gun/shot GUNSHOT
+
+weapon/shovel/hit SHOVEL
+
+weapon/stick/hit BONK
+
 ambience/scary SCARY
 
 objects/door/locked DOORL

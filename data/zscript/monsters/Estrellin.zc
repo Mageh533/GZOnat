@@ -1,12 +1,15 @@
 class Estrellin : Actor {
 
+    PlayerInfo pmo;
+
     Default {
         Monster;
+        Obituary "";
         Health 100;
         Radius 20;
         Height 20;
         Speed 6;
-        Scale 0.2;
+        Scale 0.05;
     }
     States {
     Spawn:
@@ -16,5 +19,24 @@ class Estrellin : Actor {
         ESTR A 0 Fast A_FaceTarget;
 		ESTR A 0 Fast A_CustomMeleeAttack(100);
 		Goto See;
+    }
+
+    override void BeginPlay(){
+        Super.BeginPlay();
+    }
+
+    override void Tick(){
+        Super.Tick();
+
+    }
+
+    override void CollidedWith(Actor other, bool passive){
+        Super.CollidedWith(other, passive);
+
+        if(other.player){
+            A_CustomMeleeAttack(100);
+            A_StartSound("weapon/stick/hit");
+        }
+
     }
 }

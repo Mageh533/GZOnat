@@ -6,6 +6,7 @@ class Triangulin : Actor {
 
     Default {
         Monster;
+        Obituary "";
         Health 100;
         Radius 20;
         Height 20;
@@ -37,5 +38,14 @@ class Triangulin : Actor {
         } else {
             Activate(self);
         }
+    }
+
+    override void CollidedWith(Actor other, bool passive){
+        Super.CollidedWith(other, passive);
+
+        if(other.player){
+            A_CustomMeleeAttack(100);
+        }
+
     }
 }

@@ -3,17 +3,13 @@ class Rectangulin : Actor
   Default
   {
     Monster;
-    Obituary "$OB_RECTANGULIN"; // prints "%o was killed by a zombieman"
+    Obituary ""; // prints "%o was killed by a zombieman"
     Health 20;
     Radius 20;
     Height 56;
     Speed 4;
     PainChance 200;
-    SeeSound "grunt/sight";
-    AttackSound "grunt/attack";
-    PainSound "grunt/pain";
-    DeathSound "grunt/death";
-    ActiveSound "grunt/active";
+    AttackSound "weapon/gun/shot";
     DropItem 'Clip', 256;
     Scale 0.1;
     +FLOORCLIP;
@@ -53,4 +49,13 @@ class Rectangulin : Actor
     RECT A 5;
     goto See;
   }
+
+  override void CollidedWith(Actor other, bool passive){
+    Super.CollidedWith(other, passive);
+
+    if(other.player){
+        A_CustomMeleeAttack(100);
+    }
+
+}
 }

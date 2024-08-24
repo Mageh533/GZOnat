@@ -2,6 +2,8 @@ class Circulin : Actor {
 
     Default {
         Monster;
+        Obituary "";
+        AttackSound "weapon/shovel/hit";
         Health 100;
         Radius 20;
         Height 20;
@@ -17,7 +19,16 @@ class Circulin : Actor {
 		Loop;
 	Melee:
         CIRC A 0 Fast A_FaceTarget;
-		CIRC A 0 Fast A_CustomMeleeAttack(100);
+        CIRC A 1 Fast A_CustomMeleeAttack(100);
 		Goto See;
+    }
+
+    override void CollidedWith(Actor other, bool passive){
+        Super.CollidedWith(other, passive);
+
+        if(other.player){
+            A_StartSound("weapon/shovel/hit");
+        }
+
     }
 }
