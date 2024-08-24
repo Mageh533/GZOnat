@@ -5,9 +5,11 @@ class OnatGamePlayer : PlayerPawn
 	const maxStamina = 100;
 	const initForwardMove2 = 0.5;
 	const initSideMove2 = 0.5;
+	const footStepTime = 20;
 
 	// Variables
 	double Noise;
+	double FootSteps;
 
 	Default
 	{
@@ -90,6 +92,7 @@ class OnatGamePlayer : PlayerPawn
 		super.PlayRunning();
 		StaminaRun();
 		MakeNoise();
+		PlayFootSteps();
 	}
 
 	override void PlayerThink(){
@@ -133,6 +136,21 @@ class OnatGamePlayer : PlayerPawn
 	private void NoiseDecay(){
 		if (Noise > 0){
 			Noise -= 0.1;
+		}
+	}
+
+	private void PlayFootSteps(){
+		if (isPlayerSprinting()){
+			FootSteps -= 2;
+		} else if(Player.ViewHeight != 20.5) {
+			FootSteps -= 1;
+		} else {
+			FootSteps = footStepTime;
+		}
+
+		if (FootSteps <= 0){
+			FootSteps = footStepTime;
+			A_StartSound("player/step", CHAN_AUTO, 1, (isPlayerSprinting() ? 1.5 : 0.7));
 		}
 	}
 

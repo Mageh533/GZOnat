@@ -1,5 +1,7 @@
 player/usefail USEFAIL
 
+player/step FOOTS
+
 weapon/flashlight/up FLASHUP
 
 weapon/flashlight/reload FLASHRE
