@@ -3,6 +3,8 @@ class InvisibleItem : Inventory {
         Inventory.MaxAmount 1;
         Inventory.Amount 1;
         Inventory.PickupMessage "";
+        Inventory.PickupSound "";
+        Inventory.PickupFlash "";
         Scale 0.1;
     }
 
