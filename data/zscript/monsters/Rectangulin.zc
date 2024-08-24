@@ -1,0 +1,56 @@
+class Rectangulin : Actor
+{
+  Default
+  {
+    Monster;
+    Obituary "$OB_RECTANGULIN"; // prints "%o was killed by a zombieman"
+    Health 20;
+    Radius 20;
+    Height 56;
+    Speed 4;
+    PainChance 200;
+    SeeSound "grunt/sight";
+    AttackSound "grunt/attack";
+    PainSound "grunt/pain";
+    DeathSound "grunt/death";
+    ActiveSound "grunt/active";
+    DropItem 'Clip', 256;
+    Scale 0.1;
+    +FLOORCLIP;
+  }
+  States
+  {
+  Spawn:
+    RECT A 10 A_Look;
+    loop;
+  See:
+    RECT B 1 A_Chase;
+    loop;
+  Missile:
+    RECT C 10 A_FaceTarget;
+    RECT D 1 A_CustomBulletAttack(10, 0, 1, 40, flags: CBAF_NORANDOM);
+    RECT C 10;
+    goto See;
+  Pain:
+    RECT B 3;
+    RECT B 3 A_Pain;
+    goto See;
+  Death:
+    RECT B 5;
+    RECT A 5 A_Scream;
+    RECT A 5 A_NoBlocking;
+    RECT A 5;
+    RECT A -1;
+    stop;
+  XDeath:
+    RECT A 5;
+    RECT A 5 A_XScream;
+    RECT A 5 A_NoBlocking;
+    RECT A 5;
+    RECT A -1;
+    stop;
+  Raise:
+    RECT A 5;
+    goto See;
+  }
+}

@@ -18,3 +18,5 @@ TXT_HINT_FLASHLIGHT = "     Press the flashlight key to toggle the flashlight on
 
 TXT_PICKUP_DOORKEY = "You picked up a key";
 TXT_PICKUP_FLASHLIGHT = "You got a flashlight";
+
+OB_RECTANGULIN = "%o was killed by Rectangulin";

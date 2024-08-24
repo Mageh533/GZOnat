@@ -103,6 +103,9 @@ DoomEdNums
 10003=Triangulin
 10004=DoorKey
 10005=InvisibleItem
+10006=Rectangulin
+10007=Circulin
+10008=Estrellin
 }
 
 SpawnNums
