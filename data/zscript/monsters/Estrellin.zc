@@ -28,7 +28,12 @@ class Estrellin : Actor {
         Super.Tick();
 
         if(Distance2D(pmo) < pmo.Noise){
+            self.goal = pmo;
+            self.target = pmo;
             A_Chase();
+        } else {
+            self.goal = null;
+            self.target = null;
         }
     }
 

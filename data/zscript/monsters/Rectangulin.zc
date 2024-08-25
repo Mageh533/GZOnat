@@ -56,6 +56,7 @@ class Rectangulin : Actor
 
     if(other.player){
         A_CustomMeleeAttack(100);
+        A_StartSound("weapon/stick/hit");
     }
 
 }

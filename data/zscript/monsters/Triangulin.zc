@@ -4,6 +4,10 @@ class Triangulin : Actor {
 
     double timeLeftToAttack;
 
+    OnatGamePlayer pmo;
+
+    bool chaseSoundPlayed;
+
     Default {
         Monster;
         Obituary "";
@@ -14,20 +18,22 @@ class Triangulin : Actor {
     }
     States {
     Spawn:
-		TRIN A 10 A_Look;
+		TRIN A 1 A_Look;
+        TRIN A 0 A_Chase(null, null, CHF_NORANDOMTURN);
 		Loop;
-	See:
-		TRIN A 1 Fast A_Chase;
-		Loop;
-	Melee:
-		TRIN A 0 Fast A_FaceTarget;
-		TRIN A 0 Fast A_SargAttack;
-		Goto See;
     }
 
     override void BeginPlay(){
         Super.BeginPlay();
+
+        chaseSoundPlayed = false;
+
         timeLeftToAttack = timeToAttack;
+
+        pmo = OnatGamePlayer(players[0].mo);
+
+        A_StartSound("monsters/triangulin/spawn");
+
         Deactivate(self);
     }
 
@@ -37,7 +43,15 @@ class Triangulin : Actor {
             timeLeftToAttack -= 1;
         } else {
             Activate(self);
+            self.goal = pmo;
+            self.target = pmo;
+            if(!chaseSoundPlayed){
+                A_StartSound("monsters/triangulin/chase");
+                chaseSoundPlayed = true;
+            }
         }
+
+
     }
 
     override void CollidedWith(Actor other, bool passive){
@@ -45,6 +59,7 @@ class Triangulin : Actor {
 
         if(other.player){
             A_CustomMeleeAttack(100);
+            A_StartSound("weapon/stick/hit");
         }
 
     }
