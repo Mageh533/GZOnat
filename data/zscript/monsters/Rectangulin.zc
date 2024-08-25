@@ -17,7 +17,8 @@ class Rectangulin : Actor
   States
   {
   Spawn:
-    RECT A 10 A_Look;
+    RECT A 1 A_Look;
+    RECT A 0 A_Wander(CHF_NORANDOMTURN);
     loop;
   See:
     RECT B 1 A_Chase;
