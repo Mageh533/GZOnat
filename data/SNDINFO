@@ -1,6 +1,7 @@
 // Player sounds
 player/usefail USEFAIL
 player/step FOOTS
+player/death DEATH
 
 // Player weapons and tools
 weapon/flashlight/up FLASHUP
@@ -22,3 +23,4 @@ monsters/triangulin/spawn "sounds/monsters/TriangulinSpawn.wav"
 monsters/triangulin/chase "sounds/monsters/TriangulinChase.wav"
 
 $playeralias onat male *usefail player/usefail
+$playeralias onat male *death player/death
