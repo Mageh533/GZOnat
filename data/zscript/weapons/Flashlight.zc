@@ -57,8 +57,8 @@ class Flashlight : Inventory {
                 pmo.A_StartSound("weapon/flashlight/reload", CHAN_WEAPON, 1, ATTN_NORM);
             }
 
-            if(pmo.Noise < 10){
-                pmo.Noise += 0.2; // Player can keep reloading after reaching 100% but it simply makes noise
+            if(pmo.Noise < 400){
+                pmo.Noise += 2; // Player can keep reloading after reaching 100% but it simply makes noise
             }
             
         } else {

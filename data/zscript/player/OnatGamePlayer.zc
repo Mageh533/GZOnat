@@ -124,18 +124,20 @@ class OnatGamePlayer : PlayerPawn
 
 	// Noise system
 	private void MakeNoise(){
-		if (Noise < 20) { // Noise cap when running
-			if (isPlayerSprinting()){
-				Noise += 0.5;
-			} else if (Player.ViewHeight != 20.5){
-				Noise += 0.05;
-			}
-		}
+		if (Noise < 800 && isPlayerSprinting()) { // Noise cap when running
+			Noise += 20;
+		} else if (Noise < 400 && Player.ViewHeight != 20.5) { // Noise cap when walking
+			Noise += 10;
+		} // Crouching makes no noise
 	}
 
 	private void NoiseDecay(){
 		if (Noise > 0){
-			Noise -= 0.1;
+			Noise -= (Player.ViewHeight != 20.5) ? 5 : 20;
+		}
+
+		if (Noise < 0){
+			Noise = 0;
 		}
 	}
 
