@@ -1,0 +1,12 @@
+Model Triangulin
+{
+    Path "models/monsters"
+    Model 0 "Triangulin.obj"
+    Skin 0 "Triangulin.png"
+    Scale 20.0 20.0 20.0
+    AngleOffset 90.0
+    ZOffset 7.5
+
+    FrameIndex TRIN A 0 0
+}
+
