@@ -1,6 +1,6 @@
 class Estrellin : Actor {
 
-    PlayerInfo pmo;
+    OnatGamePlayer pmo;
 
     Default {
         Monster;
@@ -15,19 +15,20 @@ class Estrellin : Actor {
     Spawn:
 		ESTR A 10 A_Look;
 		Loop;
-	Melee:
-        ESTR A 0 Fast A_FaceTarget;
-		ESTR A 0 Fast A_CustomMeleeAttack(100);
-		Goto See;
     }
 
     override void BeginPlay(){
         Super.BeginPlay();
+
+        pmo = OnatGamePlayer(players[0].mo);
     }
 
     override void Tick(){
         Super.Tick();
 
+        if(Distance2D(pmo) < pmo.Noise){
+            A_Chase();
+        }
     }
 
     override void CollidedWith(Actor other, bool passive){
