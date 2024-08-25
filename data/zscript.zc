@@ -1,11 +1,23 @@
 version "4.12.2"
 
+// Player
 #include "zscript/player/OnatGamePlayer.zc"
 #include "zscript/hud/OnatGameHUD.zc"
+
+// Items
 #include "zscript/weapons/Flashlight.zc"
-#include "zscript/monsters/Triangulin.zc"
 #include "zscript/items/DoorKey.zc"
 #include "zscript/items/InvisibleItem.zc"
+
+// Monsters
+#include "zscript/monsters/Triangulin.zc"
 #include "zscript/monsters/Rectangulin.zc"
 #include "zscript/monsters/Estrellin.zc"
 #include "zscript/monsters/Circulin.zc"
+
+// Enhanced AI by JRHard771
+#include "zscript/enhancedAI/main.zc"
+#include "zscript/enhancedAI/search.zc"
+#include "zscript/enhancedAI/path.zc"
+#include "zscript/enhancedAI/group.zc"
+#include "zscript/enhancedAI/stealth.zc"

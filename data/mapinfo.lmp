@@ -18,6 +18,7 @@ GameInfo
 	PlayerClasses = "OnatGamePlayer"
 	StatusbarClass = "OnatGameHUD"
 	AddEventHandlers = "FlashLightHandler"
+	AddEventHandlers = "EnhancedAIHandler"
 }
 
 //-------------------------------------------------------------------------------------------
