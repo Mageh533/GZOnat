@@ -1,12 +1,15 @@
 class Triangulin : Actor {
 
     const timeToAttack = 175; // 5 seconds in tics
+    const flashlightTime = 70;
 
     double timeLeftToAttack;
+    double timeLeftFlashlight;
 
     OnatGamePlayer pmo;
 
     bool chaseSoundPlayed;
+    bool hitSoundPlayed;
 
     Default {
         Monster;
@@ -27,8 +30,9 @@ class Triangulin : Actor {
         Super.BeginPlay();
 
         chaseSoundPlayed = false;
-
+        hitSoundPlayed = false;
         timeLeftToAttack = timeToAttack;
+        timeLeftFlashlight = flashlightTime;
 
         pmo = OnatGamePlayer(players[0].mo);
 
@@ -51,15 +55,33 @@ class Triangulin : Actor {
             }
         }
 
+        // bool to check if the player is looking at the monster
+        bool playerLookingAt = (((pmo.angle % 360) - (pmo.AngleTo(self) % 360)) < 15 && ((pmo.angle % 360) - (pmo.AngleTo(self) % 360)) > -15);
+
+        // Check that they have a flashlight, are close, the flashlight is turned on and are looking at the monster
+        if(pmo.FindInventory("Flashlight")){
+            if(Distance2D(pmo) < 500 && Flashlight(pmo.FindInventory("Flashlight")).beam != null && playerLookingAt){
+                timeLeftFlashlight -= 1;
+            }
+        }
+
+        if(timeLeftFlashlight <= 0){
+            A_FadeOut(0.0);
+        }
+
 
     }
 
     override void CollidedWith(Actor other, bool passive){
         Super.CollidedWith(other, passive);
 
-        if(other.player){
+        if(other.player && timeLeftToAttack <= 0){
             A_CustomMeleeAttack(100);
-            A_StartSound("weapon/stick/hit");
+
+            if(!hitSoundPlayed){
+                A_StartSound("weapon/stick/hit");
+                hitSoundPlayed = true;
+            }
         }
 
     }
