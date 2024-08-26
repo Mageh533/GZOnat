@@ -21,3 +21,6 @@ version "4.12.2"
 #include "zscript/enhancedAI/path.zc"
 #include "zscript/enhancedAI/group.zc"
 #include "zscript/enhancedAI/stealth.zc"
+
+// Props
+#include "zscript/props/IntroProps.zc"

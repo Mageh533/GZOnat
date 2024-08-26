@@ -1,0 +1,145 @@
+Class RedButton : Actor
+{
+    Default
+    {
+        Radius 20;
+        Height 20;
+        Mass 10;
+    }
+    States
+    {
+    Spawn:
+        REDB A -1;
+        Stop;
+    }
+}
+
+Class BlueButton : Actor
+{
+    Default
+    {
+        Radius 20;
+        Height 20;
+        Mass 10;
+    }
+    States
+    {
+    Spawn:
+        BLUE A -1;
+        Stop;
+    }
+}
+
+Class RedButtonDoor : Actor
+{
+    Default
+    {
+        Radius 20;
+        Height 20;
+        Mass 10;
+    }
+    States
+    {
+    Spawn:
+        REDD A -1;
+        Stop;
+    }
+}
+
+Class BlueButtonDoor : Actor
+{
+    Default
+    {
+        Radius 20;
+        Height 20;
+        Mass 10;
+    }
+    States
+    {
+    Spawn:
+        BLUD A -1;
+        Stop;
+    }
+}
+
+Class OfficeTable : Actor
+{
+    Default
+    {
+        Radius 30;
+        Height 60;
+        Mass 10;
+        +SOLID;
+    }
+    States
+    {
+    Spawn:
+        TABL A -1;
+        Stop;
+    }
+}
+
+Class Cabinet : Actor
+{
+    Default
+    {
+        Radius 15;
+        Height 80;
+        Mass 10;
+        +SOLID;
+    }
+    States
+    {
+    Spawn:
+        CABI A -1;
+        Stop;
+    }
+}
+
+Class AlarmClock : Actor
+{
+    Default
+    {
+        Radius 10;
+        Height 10;
+        Mass 10;
+    }
+    States
+    {
+    Spawn:
+        ALAR A -1;
+        Stop;
+    }
+}
+
+Class MusicBox : Actor
+{
+    Default
+    {
+        Radius 10;
+        Height 10;
+        Mass 10;
+    }
+    States
+    {
+    Spawn:
+        MUSI A -1;
+        Stop;
+    }
+}
+
+Class Radio : Actor 
+{
+    Default
+    {
+        Radius 10;
+        Height 10;
+        Mass 10;
+    }
+    States
+    {
+    Spawn:
+        RADI A -1;
+        Stop;
+    }
+}

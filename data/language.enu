@@ -8,7 +8,8 @@ SKILL_NORMAL = "Normal";
 SKILL_HARD = "Hard";
 SKILL_NIGHTMARE = "Very Hard";
 
-TXT_MAP01 = "My Test Level";
+TXT_MAP01 = "Floor 5";
+TXT_MAP02 = "Floor 4";
 
 TXT_HUD_NOISE = "Noise: ";
 

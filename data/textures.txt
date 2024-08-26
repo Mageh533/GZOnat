@@ -1,0 +1,9 @@
+sprite REDBA0, 1, 1 { Patch TNT1A0, 0, 0 }
+sprite BLUEA0, 1, 1 { Patch TNT1A0, 0, 0 }
+sprite REDDA0, 1, 1 { Patch TNT1A0, 0, 0 }
+sprite BLUDA0, 1, 1 { Patch TNT1A0, 0, 0 }
+sprite TABLA0, 1, 1 { Patch TNT1A0, 0, 0 }
+sprite CABIA0, 1, 1 { Patch TNT1A0, 0, 0 }
+sprite ALARA0, 1, 1 { Patch TNT1A0, 0, 0 }
+sprite MUSIA0, 1, 1 { Patch TNT1A0, 0, 0 }
+sprite RADIA0, 1, 1 { Patch TNT1A0, 0, 0 }

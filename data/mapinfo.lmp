@@ -92,6 +92,11 @@ Map "MAP01" "$TXT_MAP01"
 	Sky1 = "textures/sky1.png"
 }
 
+Map "MAP02" "$TXT_MAP02"
+{
+	LightMode = 3
+}
+
 //-------------------------------------------------------------------------------------------
 //
 //
@@ -107,6 +112,15 @@ DoomEdNums
 10006=Rectangulin
 10007=Circulin
 10008=Estrellin
+11001=RedButton
+11002=BlueButton
+11003=RedButtonDoor
+11004=BlueButtonDoor
+11005=OfficeTable
+11006=Cabinet
+11007=AlarmClock
+11008=MusicBox
+11009=Radio
 }
 
 SpawnNums
