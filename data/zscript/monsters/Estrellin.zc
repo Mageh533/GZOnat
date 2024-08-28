@@ -38,6 +38,9 @@ class Estrellin : Actor {
                     A_StartSound("monsters/estrellin/chase");
                     isChasing = true;
                 }
+            } else {
+                A_Wander(CHF_NORANDOMTURN);
+                SetAnimation('idle', flags: SAF_LOOP | SAF_NOOVERRIDE | SAF_INSTANT);
             }
         }
         Loop;
