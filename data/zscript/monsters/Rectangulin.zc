@@ -1,5 +1,8 @@
 class Rectangulin : Actor
 {
+
+  bool isChasing;
+
   Default
   {
     Monster;
@@ -20,44 +23,31 @@ class Rectangulin : Actor
   Spawn:
     RECT A 1 A_Look;
     RECT A 0 {
+      isChasing = false;
       A_Wander(CHF_NORANDOMTURN);
       SetAnimation('idle', flags: SAF_LOOP | SAF_NOOVERRIDE);
     }
     loop;
   See:
-    RECT A 1 A_Chase;
+    RECT A 1 {
+      A_Chase();
+      if(!isChasing){
+        A_StartSound("monsters/rectangulin/chase");
+        isChasing = true;
+      }
+    }
     loop;
   Missile:
-    RECT B 10 {
+    RECT B 25 {
       SetAnimation('aim');
       A_FaceTarget();
+      A_StartSound("monsters/rectangulin/draw");
     }
-    RECT C 1  {
+    RECT C 0  {
       SetAnimation('shoot');
       A_CustomBulletAttack(10, 0, 1, 40, flags: CBAF_NORANDOM);
     }
     RECT C 10;
-    goto See;
-  Pain:
-    RECT A 3;
-    RECT A 3 A_Pain;
-    goto See;
-  Death:
-    RECT A 5;
-    RECT A 5 A_Scream;
-    RECT A 5 A_NoBlocking;
-    RECT A 5;
-    RECT A -1;
-    stop;
-  XDeath:
-    RECT A 5;
-    RECT A 5 A_XScream;
-    RECT A 5 A_NoBlocking;
-    RECT A 5;
-    RECT A -1;
-    stop;
-  Raise:
-    RECT A 5;
     goto See;
   }
 

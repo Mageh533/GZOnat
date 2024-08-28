@@ -19,3 +19,14 @@ Model Rectangulin
     ZOffset 7.5
     BaseFrame
 }
+
+Model Circulin
+{
+    Path "models/monsters"
+    Model 0 "Circulin.iqm"
+    Skin 0 "Circulin.png"
+    Scale 30.0 30.0 30.0
+    ZOffset 7.5
+    AngleOffset 270.0
+    BaseFrame
+}

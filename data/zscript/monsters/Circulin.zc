@@ -1,5 +1,8 @@
 class Circulin : Actor {
 
+    bool isAttacking;
+    bool isChasing;
+
     Default {
         Monster;
         Obituary "";
@@ -9,18 +12,42 @@ class Circulin : Actor {
         Height 20;
         Speed 6;
         Scale 0.2;
+        +FLOORCLIP;
+        +DECOUPLEDANIMATIONS
     }
     States {
     Spawn:
 		CIRC A 1 A_Look;
-        CIRC A 0 A_Wander(CHF_NORANDOMTURN);
+        CIRC A 0 {
+            isAttacking = false;
+            isChasing = false;
+            A_Wander(CHF_NORANDOMTURN);
+            SetAnimation('idle', flags: SAF_LOOP | SAF_NOOVERRIDE | SAF_INSTANT);
+        }
 		Loop;
 	See:
-        CIRC A 1 Fast A_Chase;
+        CIRC A 1 {
+            A_Chase();
+            if(!isAttacking){
+                SetAnimation('chase', flags: SAF_NOOVERRIDE);
+            }
+            if(!isChasing){
+                A_StartSound("monsters/circulin/chase");
+                isChasing = true;
+            }
+        }
 		Loop;
 	Melee:
         CIRC A 0 Fast A_FaceTarget;
-        CIRC A 1 Fast A_CustomMeleeAttack(100);
+        CIRC A 1 {
+            isAttacking = true;
+            A_CustomMeleeAttack(100);
+            A_StartSound("monsters/circulin/hit");
+            SetAnimation('hit', flags: SAF_NOOVERRIDE);
+        }
+        CIRC A 70 {
+            isAttacking = false;
+        }
 		Goto See;
     }
 

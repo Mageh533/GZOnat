@@ -21,6 +21,10 @@ objects/key/up DKEYUP
 // Monsters
 monsters/triangulin/spawn "sounds/monsters/TriangulinSpawn.wav"
 monsters/triangulin/chase "sounds/monsters/TriangulinChase.wav"
+monsters/rectangulin/chase "sounds/monsters/Rectangulin_Eh_tu.wav"
+monsters/rectangulin/draw "sounds/monsters/Rectangulin_Draw.wav"
+monsters/circulin/chase "sounds/monsters/Circulin_Enfadado.wav"
+monsters/circulin/hit "sounds/monsters/Circulin_Risa.wav"
 
 // SFX
 sfx/alarm/intro "sounds/sfx/AlarmClockIntro.wav"
