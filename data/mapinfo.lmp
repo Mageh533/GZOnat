@@ -128,4 +128,7 @@ SpawnNums
 {
 	10003=Triangulin
 	10005=InvisibleItem
+	10006=Estrellin
+	10007=Rectangulin
+	10008=Circulin
 }
