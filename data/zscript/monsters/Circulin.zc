@@ -7,7 +7,7 @@ class Circulin : Actor {
         Monster;
         Obituary "";
         AttackSound "weapon/shovel/hit";
-        Health 100;
+        Health 900;
         Radius 20;
         Height 20;
         Speed 6;

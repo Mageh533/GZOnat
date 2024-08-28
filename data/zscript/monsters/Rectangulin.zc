@@ -7,7 +7,7 @@ class Rectangulin : Actor
   {
     Monster;
     Obituary ""; // prints "%o was killed by a zombieman"
-    Health 20;
+    Health 900;
     Radius 20;
     Height 56;
     Speed 4;
