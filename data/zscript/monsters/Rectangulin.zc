@@ -27,7 +27,7 @@ class Rectangulin : Actor
       A_Wander(CHF_NORANDOMTURN);
       SetAnimation('idle', flags: SAF_LOOP | SAF_NOOVERRIDE);
     }
-    loop;
+    Loop;
   See:
     RECT A 1 {
       A_Chase();
@@ -36,7 +36,7 @@ class Rectangulin : Actor
         isChasing = true;
       }
     }
-    loop;
+    Loop;
   Missile:
     RECT B 25 {
       SetAnimation('aim');

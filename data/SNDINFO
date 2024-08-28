@@ -25,6 +25,7 @@ monsters/rectangulin/chase "sounds/monsters/Rectangulin_Eh_tu.wav"
 monsters/rectangulin/draw "sounds/monsters/Rectangulin_Draw.wav"
 monsters/circulin/chase "sounds/monsters/Circulin_Enfadado.wav"
 monsters/circulin/hit "sounds/monsters/Circulin_Risa.wav"
+monsters/estrellin/chase "sounds/monsters/Estrellin_eh.wav"
 
 // SFX
 sfx/alarm/intro "sounds/sfx/AlarmClockIntro.wav"

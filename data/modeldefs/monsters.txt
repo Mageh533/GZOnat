@@ -30,3 +30,13 @@ Model Circulin
     AngleOffset 270.0
     BaseFrame
 }
+
+Model Estrellin
+{
+    Path "models/monsters"
+    Model 0 "Estrellin.iqm"
+    Skin 0 "Estrellin.png"
+    Scale 120.0 120.0 120.0
+    ZOffset 7.5
+    BaseFrame
+}

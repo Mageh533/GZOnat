@@ -2,48 +2,62 @@ class Estrellin : Actor {
 
     OnatGamePlayer pmo;
 
+    bool isAttacking;
+    bool isChasing;
+
     Default {
         Monster;
         Obituary "";
+        AttackSound "weapon/stick/hit";
         Health 100;
         Radius 20;
         Height 20;
         Speed 6;
         Scale 0.05;
+        +FLOORCLIP;
+        +DECOUPLEDANIMATIONS
     }
     States {
     Spawn:
 		ESTR A 1 A_Look;
-        ESTR A 0 A_Wander(CHF_NORANDOMTURN);
+        ESTR A 0 {
+            isAttacking = false;
+            isChasing = false;
+            A_Wander(CHF_NORANDOMTURN);
+            SetAnimation('idle', flags: SAF_LOOP | SAF_NOOVERRIDE | SAF_INSTANT);
+        }
         Loop;
+    See:
+        ESTR A 1 {
+            if(Distance2D(pmo) < pmo.Noise){
+                A_Chase();
+                if(!isAttacking){
+                    SetAnimation('chase', flags: SAF_NOOVERRIDE);
+                }
+                if(!isChasing){
+                    A_StartSound("monsters/estrellin/chase");
+                    isChasing = true;
+                }
+            }
+        }
+        Stop;
+    Melee:
+        CIRC A 0 Fast A_FaceTarget;
+        CIRC A 1 {
+            isAttacking = true;
+            A_CustomMeleeAttack(100);
+            A_StartSound("weapon/stick/hit");
+            SetAnimation('hit', 60, flags: SAF_NOOVERRIDE);
+        }
+        CIRC A 70 {
+            isAttacking = false;
+        }
+        Goto Spawn;
     }
 
     override void BeginPlay(){
         Super.BeginPlay();
 
         pmo = OnatGamePlayer(players[0].mo);
-    }
-
-    override void Tick(){
-        Super.Tick();
-
-        if(Distance2D(pmo) < pmo.Noise){
-            self.goal = pmo;
-            self.target = pmo;
-            A_Chase();
-        } else {
-            self.goal = null;
-            self.target = null;
-        }
-    }
-
-    override void CollidedWith(Actor other, bool passive){
-        Super.CollidedWith(other, passive);
-
-        if(other.player){
-            A_CustomMeleeAttack(100);
-            A_StartSound("weapon/stick/hit");
-        }
-
     }
 }
