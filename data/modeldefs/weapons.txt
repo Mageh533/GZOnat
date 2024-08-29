@@ -1,0 +1,11 @@
+Model Flashlight
+{
+    Path "models/weapons"
+    Model 0 "Dynamo.obj"
+    Skin 0 "dynamo.png"
+    Scale 50.0 50.0 50.0
+    AngleOffset 90.0
+    Offset -100 0 15
+
+    FrameIndex FLAS A 0 0
+}

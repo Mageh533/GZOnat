@@ -29,6 +29,7 @@ monsters/estrellin/chase "sounds/monsters/Estrellin_eh.wav"
 
 // SFX
 sfx/alarm/intro "sounds/sfx/AlarmClockIntro.wav"
+sfx/alarm/danger "sounds/sfx/Alarm.wav"
 
 $playeralias onat male *usefail player/usefail
 $playeralias onat male *death player/death

@@ -1,2 +1,3 @@
 #include "modeldefs/monsters.txt"
 #include "modeldefs/props.txt"
+#include "modeldefs/weapons.txt"
