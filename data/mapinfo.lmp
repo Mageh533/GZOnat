@@ -122,6 +122,7 @@ DoomEdNums
 11007=AlarmClock
 11008=MusicBox
 11009=Radio
+11010=Terminal
 }
 
 SpawnNums
@@ -131,4 +132,5 @@ SpawnNums
 	10006=Estrellin
 	10007=Rectangulin
 	10008=Circulin
+	10009=DoorKey
 }

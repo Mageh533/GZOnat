@@ -1,0 +1,16 @@
+Class Terminal : Actor
+{
+    Default
+    {
+        Radius 20;
+        Height 60;
+        Mass 10;
+        +SOLID;
+    }
+    States
+    {
+    Spawn:
+        TERM A -1;
+        Stop;
+    }
+}

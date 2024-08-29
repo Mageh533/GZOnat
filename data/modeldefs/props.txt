@@ -105,3 +105,16 @@ Model Radio
 
     FrameIndex RADI A 0 0
 }
+
+
+Model DoorKey
+{
+    Path "models/props"
+    Model 0 "Key.obj"
+    Skin 0 "key.png"
+    Scale 30.0 30.0 30.0
+    AngleOffset 0
+    Offset -100 0 15
+
+    FrameIndex DKEY A 0 0
+}

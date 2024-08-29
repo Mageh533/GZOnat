@@ -1,0 +1,11 @@
+Model Terminal
+{
+    Path "models/props"
+    Model 0 "Terminal.obj"
+    Skin 0 "terminal.png"
+    Scale 5.0 5.0 5.0
+    AngleOffset 270.0
+    Offset -20 -2.5 35
+
+    FrameIndex TERM A 0 0
+}
