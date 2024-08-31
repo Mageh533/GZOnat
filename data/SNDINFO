@@ -9,6 +9,7 @@ weapon/flashlight/reload FLASHRE
 weapon/gun/shot GUNSHOT
 weapon/shovel/hit SHOVEL
 weapon/stick/hit BONK
+weapon/tazer/fire SHOCK
 
 // Ambience
 ambience/scary SCARY

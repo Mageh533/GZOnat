@@ -5,9 +5,12 @@ version "4.12.2"
 #include "zscript/hud/OnatGameHUD.zc"
 
 // Items
-#include "zscript/weapons/Flashlight.zc"
 #include "zscript/items/DoorKey.zc"
 #include "zscript/items/InvisibleItem.zc"
+
+// Weapons
+#include "zscript/weapons/Flashlight.zc"
+#include "zscript/weapons/Tazer.zc"
 
 // Monsters
 #include "zscript/monsters/Triangulin.zc"

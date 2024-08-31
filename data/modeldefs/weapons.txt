@@ -9,3 +9,15 @@ Model Flashlight
 
     FrameIndex FLAS A 0 0
 }
+
+Model Tazer
+{
+    Path "models/weapons"
+    Model 0 "Taser.obj"
+    Skin 0 "taser.png"
+    Scale 3 3 3
+    AngleOffset 90.0
+    Offset 0 0 0
+
+    FrameIndex TASP A 0 0
+}

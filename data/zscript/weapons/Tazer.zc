@@ -1,0 +1,56 @@
+class Tazer : Weapon
+{
+   Default
+   {
+       Inventory.PickupSound "misc/usgpickup";
+       Inventory.PickupMessage "Picked up a Tazer"; // This is an example. It's recommended to use LANGUAGE for player-facing strings.
+       Weapon.SelectionOrder 350;
+       Weapon.AmmoType "Clip";
+       Weapon.AmmoGive 3;
+       Weapon.AmmoUse 1;
+       Weapon.SlotNumber 2;
+       AttackSound "weapon/tazer/fire"; // This sound will be played automatically by A_FireBullets
+   }
+   States
+   {
+   // This sequence is entered when the weapon spawns in the world
+   // or is dropped from inventory:
+   Spawn: 
+      TASP A -1;
+      Stop;
+   // This sequence is used while you have this weapon selected:
+   Ready: 
+      TASP A 1 A_WeaponReady; // Allows the weapon to be fired or deselected
+      Loop;
+   // This sequence is entered when you select this weapon:
+   Select:
+      TASP A 1 A_Raise; //Keeps raising the weapon's sprite until it reaches 32, then jumps to ready
+      Loop;
+   // This sequence is entered when you deselect the current selected weapon:
+   Deselect:
+      TASP A 1 A_Lower; //Keeps lowering the weapon's sprite until it's below the screen
+      Loop; 
+   // The attack sequence. Entered while the player presses the Fire button
+   // while the weapon was ready:
+   Fire:
+      TASP A 3;
+      TASP A 7 
+      {
+          A_FireBullets (0, 0, 1, 100);
+          A_GunFlash(); // Plays the weapon's Flash sequence on a separate layer
+      }
+      TASP B 7;
+      TASP C 7 A_CheckReload; // If the weapon has run out of ammo here, it'll be deselected without playing the rest of the animation
+      TASP D 7 A_StartSound("weapons/sshoto", CHAN_WEAPON);
+      TASP E 7;
+      TASP F 7 A_StartSound ("weapons/sshotl", CHAN_WEAPON);
+      TASP G 6;
+      TNT1 A 0 A_StartSound ("weapons/sshotc", CHAN_WEAPON);
+      TASP HHHHHHAAAAA 1 A_ReFire;
+      Goto Ready;
+   // The weapon's flash animation which is drawn on a separate layer:
+   Flash:
+      USGF A 6 bright A_Light1;
+      Goto LightDone; // LightDone is a built-in state that resets the light created by A_Light1 and similar functions
+   }
+}
