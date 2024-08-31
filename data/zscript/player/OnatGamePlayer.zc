@@ -142,7 +142,7 @@ class OnatGamePlayer : PlayerPawn
 	}
 
 	private void PlayFootSteps(){
-		if (isPlayerSprinting()){
+		if (isPlayerSprinting() && Stamina > 0){
 			FootSteps -= 2;
 		} else if(Player.ViewHeight != 20.5) {
 			FootSteps -= 1;
